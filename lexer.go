@@ -27,7 +27,7 @@ func (l *lexer) scan() *token {
 	}
 	if r == ' ' || r == '\t' || r == '\n' {
 		l.r.UnreadRune()
-		return l.scaneWs()
+		return l.scanWs()
 	}
 	if r == '(' {
 		return &token{typ: openBracket, lexeme: string(r)}
@@ -47,7 +47,7 @@ func (l *lexer) scan() *token {
 	return &token{typ: illegal, lexeme: string(r)}
 }
 
-func (l *lexer) scaneWs() *token {
+func (l *lexer) scanWs() *token {
 	lexeme := ""
 	for {
 		r, _, err := l.r.ReadRune()
